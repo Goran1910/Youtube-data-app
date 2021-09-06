@@ -1,4 +1,7 @@
 use youtube_data;
+insert into channel(title, subscriber_count, thumbnail_url, video_count, id) values ('Metallica', 7520000, 1686, 'https://yt3.ggpht.com/ZjcQii3sVKaPcGK3rIm8vot-qwdmm7KAHsWCjlQLsDLa_tm2kykM-Lgmty1IwQWehj7nEzXPUA=s800-c-k-c0x00ffffff-no-nd-rj', 'UCbulh9WdLtEXiooRcYK7SWw');
+insert into channel(title, subscriber_count, thumbnail_url, video_count, id) values ('Iron Maiden', 1960000, 238, 'https://yt3.ggpht.com/ytc/AKedOLQaZfQ0DPNoTTMZIHanzzZWogOn8Ahe-srvqx7lZA=s800-c-k-c0x00ffffff-no-rj-mo','UCaisXKBdNOYqGr2qOXCLchQ');
+insert into channel(title, subscriber_count, thumbnail_url, video_count, id) values ('Megadeth', 914000, 176, 'https://yt3.ggpht.com/ytc/AKedOLQ4wkmTz21sEl9qI1HCWgZTeUXXE2DGfQbUjpNIPA=s800-c-k-c0x00ffffff-no-rj-mo', 'UCLVz1B001PIbq9LliJenV2w');
 insert into playlist(title, id, thumbnail_url, channel_title) values("...And Justice For All", "PL6ogdCG3tAWhOUeMyn8UqrBTNgonrnbs3", "https://i.ytimg.com/vi/qfehFvmwQlo/sddefault.jpg", "Metallica");
 insert into video(title, playlist_title, views, likes, dislikes, comments, published_at, duration, thumbnail_url) values("Blackened", "...And Justice For All", 10648451, 120236, 7696, 2506, "2016-10-08", 402, "https://i.ytimg.com/vi/qfehFvmwQlo/sddefault.jpg");
 insert into video(title, playlist_title, views, likes, dislikes, comments, published_at, duration, thumbnail_url) values("... And Justice For All", "...And Justice For All", 15752410, 119995, 7161, 3488, "2016-10-08", 586, "https://i.ytimg.com/vi/_fKAsvJrFes/sddefault.jpg");
