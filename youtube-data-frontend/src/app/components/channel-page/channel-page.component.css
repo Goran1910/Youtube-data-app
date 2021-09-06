@@ -1,0 +1,29 @@
+section{
+    margin: auto;
+}
+
+.info{
+    margin-left: 50px;
+}
+
+.table{
+    margin-top: 50px;
+}
+
+.navButtons{
+    border: solid 2px;
+    padding: 5px 10px 5px 10px;
+    background-color: rgba(128, 128, 128, 0.692);
+}
+
+#videoNav{
+    border-right: none;
+}
+
+#playlistNav{
+    border-left: none;
+}
+
+.pressed{
+    background-color: rgb(107, 107, 107);
+}

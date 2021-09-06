@@ -1,0 +1,41 @@
+<div class="pagingButtonsDiv">
+    <button class = "pagingButton" (click)="previousPage()" [ngClass] = "{'buttonHidden': isFirstPage()}">Previous</button>
+    <button class = "pagingButton" (click)="nextPage()" [ngClass] = "{'buttonHidden': isLastPage()}">Next</button>
+</div>
+
+<app-combo-albums (selectedAlbumEmitter)='albumChanged($event)'></app-combo-albums>
+
+<table>
+    <tr id="header">
+        <td>Rank</td>
+        <th id="thumbnail">Thumbnail</th>
+        <th data-column="title" (click)="sortBy('title')" id="title">Title</th>
+        <th data-column="2">Album</th>
+        <th data-column="views" (click)="sortBy('views')" >Views </th>
+        <th data-column="likes" (click)="sortBy('likes')">Likes</th>
+        <th data-column="dislikes" (click)="sortBy('dislikes')">Dislikes</th>
+        <th data-column="comments" (click)="sortBy('comments')">Comments</th>
+        <th data-column="publishedAt" (click)="sortBy('publishedAt')"> Published at</th>
+        <th data-column="duration" (click)="sortBy('duration')">Duration</th>
+        <th data-column="likesPercentage" (click)="sortBy('likesPercentage')">Percentage of likes</th>
+        <th data-column="likesAndDislikesPerView" (click)="sortBy('likesAndDislikesPerView')">(Likes + dislikes) / Views</th>
+    </tr>
+    <tr *ngFor="let video of videos; let i = index; let last = last;" [ngClass]="{'hidden': showBasedOnPage(i) }"> 
+        {{last ? changeColumnColor() : ''}}
+        {{last ? toggleCaretIcon() : ''}}
+        <td>{{i + 1}}</td>
+        <td><img src={{video?.thumbnailUrl}}/></td>
+        <td data-column="title">{{video?.title}}</td>
+        <td data-column="playlist">{{video?.playlist?.title}}</td>
+        <td data-column="views">{{video?.views?.toLocaleString()}}</td>
+        <td data-column="likes">{{video?.likes?.toLocaleString()}}</td>
+        <td data-column="dislikes">{{video?.dislikes?.toLocaleString()}}</td>
+        <td data-column="comments">{{video?.comments?.toLocaleString()}}</td>
+        <td data-column="publishedAt">{{video?.publishedAt}}</td>
+        <td data-column="duration">{{formatDuration(video.duration)}}</td>
+        <td data-column="likesPercentage">{{formatPercentages(video.likesPercentage)}}</td>
+        <td data-column="likesAndDislikesPerView">{{formatPercentages(video.likesAndDislikesPerView)}}</td>
+    </tr>
+</table>
+
+

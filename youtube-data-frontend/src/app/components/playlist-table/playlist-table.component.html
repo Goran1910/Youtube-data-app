@@ -1,0 +1,38 @@
+
+<!--<div class="pagingButtonsDiv">
+    <button class = "pagingButton" (click)="previousPage()" [ngClass] = "{'buttonHidden': isFirstPage()}">Previous</button>
+    <button class = "pagingButton" (click)="nextPage()" [ngClass] = "{'buttonHidden': isLastPage()}">Next</button>
+</div>
+-->
+
+<table>
+    <tr id="header">
+        <td>Rank</td>
+        <th id="thumbnail">Thumbnail</th>
+        <th data-column="title" (click)="sortBy('title')" id="title">Title</th>
+        <th data-column="totalViews" (click)="sortBy('totalViews')" >Views </th>
+        <th data-column="totalLikes" (click)="sortBy('totalLikes')">Likes</th>
+        <th data-column="totalDislikes" (click)="sortBy('totalDislikes')">Dislikes</th>
+        <th data-column="totalComments" (click)="sortBy('totalComments')">Comments</th>
+        <th data-column="likesPercentage" (click)="sortBy('likesPercentage')">Percentage of likes</th>
+        <th data-column="likesAndDislikesPerView" (click)="sortBy('likesAndDislikesPerView')">(Likes + dislikes) / Views</th>
+    </tr>
+    <tr *ngFor="let playlist of playlists; let i = index; let last = last;" [ngClass]="{'hidden': showBasedOnPage(i)}"> 
+        {{last ? changeColumnColor() : ''}}
+        {{last ? toggleCaretIcon() : ''}}
+        <td>{{i + 1}}</td>
+        <td><img src={{playlist?.thumbnailUrl}}/></td>
+        <td data-column="title">{{playlist?.title}}</td>
+        <td data-column="totalViews">{{playlist?.totalViews?.toLocaleString()}}</td>
+        <td data-column="totalLikes">{{playlist?.totalLikes?.toLocaleString()}}</td>
+        <td data-column="totalDislikes">{{playlist?.totalDislikes?.toLocaleString()}}</td>
+        <td data-column="totalComments">{{playlist?.totalComments?.toLocaleString()}}</td>
+        <td data-column="likesPercentage">{{formatPercentages(playlist.likesPercentage)}}</td>
+        <td data-column="likesAndDislikesPerView">{{formatPercentages(playlist.likesAndDislikesPerView)}}</td>
+    </tr>
+</table>
+
+
+
+
+

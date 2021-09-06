@@ -1,0 +1,6 @@
+<div class="channel">
+    <a [routerLink]="['channels', channel.title, 'videos']" [queryParams]="quearyParams"> 
+        <img src={{channel.thumbnailUrl}}/>
+        <p>{{channel.title}}</p>
+    </a>
+</div>
