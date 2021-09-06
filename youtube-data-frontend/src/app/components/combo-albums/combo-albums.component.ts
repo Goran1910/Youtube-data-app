@@ -11,7 +11,7 @@ export class ComboAlbumsComponent implements OnInit {
 
   channelTitle!: string | null;
   titles!: String[];
-  selectedAlbum!: string;
+  selectedAlbum: string = 'all';
 
   @Output()
   selectedAlbumEmitter = new EventEmitter<string>();

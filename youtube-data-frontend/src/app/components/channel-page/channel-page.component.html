@@ -2,12 +2,8 @@
     <div class="info">
         <app-channel-info></app-channel-info>
     </div>
-    
-    <!--<div class="table">
-        <app-video-table></app-video-table>
-    </div>
--->
+
     <button id="videoNav" (click)="navigateToVideos($event)" class='navButtons'>Videos</button>
-    <button id="playlistNav" class='navButtons' (click) = "navigateToPlaylist($event)">Playlists</button>
+    <button id="playlistNav" class='navButtons' (click)="navigateToPlaylist($event)">Playlists</button>
     <router-outlet></router-outlet>
 </section>

@@ -7,7 +7,7 @@ class MySQLPlaylistRepository(MySQLRepository):
         sql = 'insert into playlist(title, id, thumbnail_url, channel_title) values(%s, %s, %s, %s)'
         val = playlist.to_tuple(Modes.CREATE)
         self._prepare_query_execution(sql, val)
-        self._save_query(playlist)
+        #self._save_query(playlist)
 
     def update_playlist(self, playlist):
         sql = 'update playlist set title = %s, id = %s, thumbnail_url = %s, channel_title = %s where title = %s'

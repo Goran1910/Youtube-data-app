@@ -6,7 +6,7 @@ class MySQLVideoRepository(MySQLRepository):
         sql = 'insert into video(title, playlist_title, views, likes, dislikes, comments, published_at, duration, thumbnail_url) values(%s, %s, %s, %s, %s, %s, %s, %s, %s)'
         val = [video.to_tuple() for video in videos]
         self._prepare_query_execution(sql, val)
-        self._save_query(videos)
+        #self._save_query(videos)
  
     def update_videos(self, videos):
         sql = 'update video set title = %s, playlist_title = %s, views = %s, likes = %s, dislikes = %s, comments = %s, published_at = %s, duration = %s, thumbnail_url = %s where title = %s'

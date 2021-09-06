@@ -109,7 +109,7 @@ export class VideoTableComponent implements OnInit {
     this.route.parent?.paramMap.subscribe((params) => {
       this.channelName = params.get('name');
       if (this.channelName != null) {
-        if(this.album === 'All'){
+        if(this.album === 'all'){
           this.videoService.getVideosByChannelName(this.channelName).subscribe((videos) => {
             this.videos = videos;
           });

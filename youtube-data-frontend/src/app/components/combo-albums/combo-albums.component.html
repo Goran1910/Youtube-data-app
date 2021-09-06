@@ -1,3 +1,7 @@
+<label>Albums:</label>
 <select [(ngModel)]="selectedAlbum" (ngModelChange)="albumSelected()">
-    <option *ngFor="let title of titles" value="{{title}}">{{title}}</option>
+    <option value="all" selected="selected">All</option>
+    <optgroup label="">
+        <option *ngFor="let title of titles" value="{{title}}">{{title}}</option>
+    </optgroup>
 </select>

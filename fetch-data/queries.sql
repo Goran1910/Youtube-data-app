@@ -1,3 +1,4 @@
+use youtube_data;
 insert into playlist(title, id, thumbnail_url, channel_title) values("...And Justice For All", "PL6ogdCG3tAWhOUeMyn8UqrBTNgonrnbs3", "https://i.ytimg.com/vi/qfehFvmwQlo/sddefault.jpg", "Metallica");
 insert into video(title, playlist_title, views, likes, dislikes, comments, published_at, duration, thumbnail_url) values("Blackened", "...And Justice For All", 10648451, 120236, 7696, 2506, "2016-10-08", 402, "https://i.ytimg.com/vi/qfehFvmwQlo/sddefault.jpg");
 insert into video(title, playlist_title, views, likes, dislikes, comments, published_at, duration, thumbnail_url) values("... And Justice For All", "...And Justice For All", 15752410, 119995, 7161, 3488, "2016-10-08", 586, "https://i.ytimg.com/vi/_fKAsvJrFes/sddefault.jpg");
