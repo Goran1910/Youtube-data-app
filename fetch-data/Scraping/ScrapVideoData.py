@@ -10,99 +10,90 @@ class ScrapVideoData:
         self.url = f'https://www.googleapis.com/youtube/v3/videos?key={self.apiKey}&maxResults={self.limit}'
         self.video = Video()
         
-    def scrapDataSnippet(self, videoId):
+    def scrap_data_snippet(self, videoId):
         url = self.url + '&id=' + videoId + '&part=snippet'
-        
-        json_url = requests.get(url)
-        data = json.loads(json_url.text)
-        
+        data = self._fetch_data(url)
         try:
-            stavke = data['items']
+            items = data['items']
         except:
-            print('greska')
+            print('error video snippet')
+            return
             
-        snippet = stavke[0]['snippet']
-        dateString = snippet['publishedAt']
-        date = self._formatDate(dateString)
-        
+        snippet = items[0]['snippet']
+        date_string = snippet['publishedAt']
+        date = self._format_date(date_string)
         self.video.setDate(date)
         self.video.setTitle(snippet['title'])
         self.video.setThumbnail(snippet['thumbnails']['standard']['url'])
         
         
-        
-    def scrapDataStatistics(self, videoId):
+    def scrap_data_statistics(self, videoId):
         url = self.url + '&id=' + videoId +'&part=statistics'
-        
-        json_url = requests.get(url)
-        data = json.loads(json_url.text)
-    
+        data = self._fetch_data(url)
         try:
-            stavke = data['items']
+            items = data['items']
         except:
-            print('greska')
+            print('error video statistics')
+            return
             
-        stat = stavke[0]['statistics']
+        stat = items[0]['statistics']
         self.video.setViews(int(stat['viewCount']))
         self.video.setLikes(int(stat['likeCount']))
         self.video.setDislikes(int(stat['dislikeCount']))
         self.video.setComments(int(stat['commentCount']))
         
-    def scrapDataContentDetails(self, videoId):
+    def scrap_data_content_details(self, videoId):
         url = self.url + '&id=' + videoId + '&part=contentDetails'
-        json_url = requests.get(url)
-        data = json.loads(json_url.text)
-    
+        data = self._fetch_data(url)
         try:
-            stavke = data['items']
+            items = data['items']
         except:
-            print('greska')
+            print('error video content details')
+            return
             
-        durationMessy = stavke[0]['contentDetails']['duration']
-        duration = self._formatDuration(durationMessy)
-        
+        duration_messy = items[0]['contentDetails']['duration']
+        duration = self._format_duration(duration_messy)
         self.video.setDuration(duration)
         
-    def _formatDate(self, dateString):
-        componenets = dateString[:10].split('-')
+        
+    def _format_date(self, date_string):
+        componenets = date_string[:10].split('-')
         date = datetime.datetime(int(componenets[0]), int(componenets[1]), int(componenets[2]))
         return date
     
-    def _formatDuration(self, durationMessy):
+    def _format_duration(self, duration_messy):
         seconds = 0
-        print(durationMessy)
-        durationMessy = durationMessy[2:]
-        if durationMessy.find('H') != -1:
-            durationMessy = durationMessy.split('H')
-            seconds += int(durationMessy[0]) * 3600
-            durationMessy = durationMessy[1]
+        duration_messy = duration_messy[2:]
+        if duration_messy.find('H') != -1:
+            duration_messy = duration_messy.split('H')
+            seconds += int(duration_messy[0]) * 3600
+            duration_messy = duration_messy[1]
             
-        if durationMessy.find('M') != -1:
-            durationMessy = durationMessy.split('M')
-            seconds += int(durationMessy[0]) * 60
-            durationMessy = durationMessy[1]
+        if duration_messy.find('M') != -1:
+            duration_messy = duration_messy.split('M')
+            seconds += int(duration_messy[0]) * 60
+            duration_messy = duration_messy[1]
             
-        if durationMessy.find('S') != -1:
-            seconds += int(durationMessy.split('S')[0])
+        if duration_messy.find('S') != -1:
+            seconds += int(duration_messy.split('S')[0])
             
         return seconds
         
-    def _getChannelName(self, channelId):
+    def _get_channel_name(self, channelId):
         url = f'https://www.googleapis.com/youtube/v3/channels?key={self.apiKey}&id={channelId}&part=snippet'
+        data = self._fetch_data(url)
+        try:
+            items = data['items']
+        except:
+            print('error video get channel name')
+            return
+            
+        return items[0]['snippet']['title']
+    
+    def _fetch_data(self, url):
         json_url = requests.get(url)
         data = json.loads(json_url.text)
-        try:
-            stavke = data['items']
-        except:
-            print('greska')
-            
-        return stavke[0]['snippet']['title']
+        return data
         
-        
-#%%
-import datetime
-date = datetime.datetime(1999, 10, 19)
-print(date.strftime("%Y-%m-%d"))
-
         
     

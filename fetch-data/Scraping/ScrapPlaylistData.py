@@ -11,46 +11,43 @@ class ScrapPlaylistData:
         self.playlist = Playlist(title, id, '', channel_title)
         self.scrapVideoData = ScrapVideoData(api_key)
         self.limit = 5
-        self.maxAttempts = 10
+        self.max_attempts = 10
         
     def scrap_data(self):
-        ids = self._getVideosIds()
+        ids = self._get_videos_ids()
         for id in ids:
-            self.scrapVideoData.scrapDataSnippet(id)
-            self.scrapVideoData.scrapDataContentDetails(id)
-            self.scrapVideoData.scrapDataStatistics(id)
+            self.scrapVideoData.scrap_data_snippet(id)
+            self.scrapVideoData.scrap_data_content_details(id)
+            self.scrapVideoData.scrap_data_statistics(id)
             self.scrapVideoData.video.setPlaylistName(self.playlist.title)
             self.playlist.videos.append(copy.deepcopy(self.scrapVideoData.video))
         
         
-    def _getVideosIds(self):
+    def _get_videos_ids(self):
         ids = []
         url = f'https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&playlistId={self.playlist.id}&key={self.api_key}&maxResults={self.limit}'
-        idsFromPage, npt = self._getVideosIdsPerPage(url)
+        idsFromPage, npt = self._get_videos_ids_per_page(url)
         ids.extend(idsFromPage)
-        currentAttempt = 0
+        current_attempt = 0
         
-        while npt is not None and currentAttempt < self.maxAttempts:
-            idsFromPage, npt = self._getVideosIdsPerPage(url + '&pageToken=' + npt)
-            ids.extend(idsFromPage)
-            currentAttempt += 1
+        while npt is not None and current_attempt < self.max_attempts:
+            ids_from_page, npt = self._get_videos_ids_per_page(url + '&pageToken=' + npt)
+            ids.extend(ids_from_page)
+            current_attempt += 1
             
         return ids
             
-    def _getVideosIdsPerPage(self, url):
-        json_url = requests.get(url)
-        data = json.loads(json_url.text)
+    def _get_videos_ids_per_page(self, url):
+        data = self._fetch_data(url)
         ids = []
         npt = data.get('nextPageToken', None)
-        
         try: 
-            stavke = data['items']
+            items = data['items']
         except:
-            print('nema stavki')
-            
-        for stavka in stavke:
-            ids.append(stavka['contentDetails']['videoId'])
-        
+            print('error videos ids')
+            return
+        for item in items:
+            ids.append(item['contentDetails']['videoId'])
         return ids, npt
     
     def get_playlists_thumbnail(self):
@@ -61,7 +58,6 @@ class ScrapPlaylistData:
         except:
             print('error get thumbnails')
             return
-            
         snippet = items[0]['snippet']    
         self.playlist.thumbnail_url = snippet['thumbnails']['standard']['url']
         

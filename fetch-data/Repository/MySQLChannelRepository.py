@@ -7,11 +7,13 @@ class MySQLChannelRepository(MySQLRepository):
         sql = 'insert into channel(title, subscriber_count, thumbnail_url, id, video_count) values(%s, %s, %s, %s, %s)'
         val = channel.to_tuple(Modes.CREATE)
         self._prepare_query_execution(sql, val)
+        print(f'{channel.title} channel is added!')
 
     def update_channel(self, channel):
         sql = 'update channel set title = %s, subscriber_count = %s, thumbnail_url = %s, id = %s, video_count = %s where title = %s'
         val = channel.to_tuple(Modes.UPDATE)
         self._prepare_query_execution(sql, val)
+        print(f'{channel.title} channel is updated!')
 
     def _prepare_query_execution(self, query, value):
         mycursor = self.mydb.cursor()

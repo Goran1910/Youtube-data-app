@@ -27,6 +27,7 @@ def add_playlist(id, title, channel_title):
     spd.get_playlists_thumbnail()
     repo_playlist = MySQLPlaylistRepository()
     repo_playlist.add_playlist(spd.playlist)
+    print('wait for videos to be added...')
     spd.scrap_data()
     repo_video = MySQLVideoRepository()
     repo_video.save_videos(spd.playlist.videos)

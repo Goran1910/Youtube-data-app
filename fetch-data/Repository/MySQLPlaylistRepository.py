@@ -8,11 +8,13 @@ class MySQLPlaylistRepository(MySQLRepository):
         val = playlist.to_tuple(Modes.CREATE)
         self._prepare_query_execution(sql, val)
         #self._save_query(playlist)
+        print(f'{playlist.title} playlist is added!')
 
     def update_playlist(self, playlist):
         sql = 'update playlist set title = %s, id = %s, thumbnail_url = %s, channel_title = %s where title = %s'
         val = playlist.to_tuple(Modes.UPDATE)
         self._prepare_query_execution(sql, val)
+        print(f'{playlist.title} playlist is updated!')
 
     def _prepare_query_execution(self, query, value):
         mycursor = self.mydb.cursor()

@@ -7,15 +7,16 @@ class MySQLVideoRepository(MySQLRepository):
         val = [video.to_tuple() for video in videos]
         self._prepare_query_execution(sql, val)
         #self._save_query(videos)
+        print(f'videos from {videos[0].playlistName} are added!')
  
     def update_videos(self, videos):
         sql = 'update video set title = %s, playlist_title = %s, views = %s, likes = %s, dislikes = %s, comments = %s, published_at = %s, duration = %s, thumbnail_url = %s where title = %s'
         val = [video.to_tuple(video.title) for video in videos]
         self._prepare_query_execution(sql, val)
+        print(f'videos from {videos[0].playlistName} are updated!')
    
     def _prepare_query_execution(self, query, value):
         mycursor = self.mydb.cursor()
-        print(value)
         mycursor.executemany(query, value)        
         self.mydb.commit()
         

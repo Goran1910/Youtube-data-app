@@ -16,7 +16,7 @@ class ScrapChannelData:
         try:
             items = data['items']
         except:
-            print('error snippet')
+            print('error channel snippet')
             return 
         snippet = items[0]['snippet']
         self.channel.title = snippet['title']
@@ -28,7 +28,7 @@ class ScrapChannelData:
         try:
             items = data['items']
         except:
-            print('error statistics')
+            print('error channel statistics')
             return
         statistics = items[0]['statistics']
         self.channel.subscriber_count = statistics['subscriberCount']
