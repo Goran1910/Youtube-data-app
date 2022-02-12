@@ -51,7 +51,6 @@ if __name__ == '__main__':
     # add_channel('UCbulh9WdLtEXiooRcYK7SWw')
     # add_channel('UCqC_GY2ZiENFz2pwL0cSfAw')
 
-    """
     add_playlist('PL6ogdCG3tAWhOUeMyn8UqrBTNgonrnbs3', '...And Justice For All', 'Metallica')
     add_playlist('PLBU3rjLvn2nTAGUzCiQjgeoPl0Bl0RZeB', 'Black Album', 'Metallica')
     add_playlist('PL6vwnon3sINr_Emg1neUAZoIecAHwOjgY', 'Death Magnetic', 'Metallica')
@@ -69,12 +68,9 @@ if __name__ == '__main__':
     add_playlist('PLRFeURyjsHpNx5zI03BmlbKZjLpvOmMOG', 'Powerslave', 'Iron Maiden')
     add_playlist('PLIKpCFu8Fpmk_7mHRhnVob2vuiPjqYl8X', 'The Number Of The Beast', 'Iron Maiden')
     add_playlist('PLIKpCFu8Fpml1O5EIDNX6C5Mtovztm0Am', 'Piece Of Mind', 'Iron Maiden')
-    add_playlist('PL81_CtYCym28M8c2NFVCEIEBDCu6o1tXw', 'Dookie', 'Green Day')
-    add_playlist('PLhkWe_r3g_rUh1LmAyTwkXToOIUnQXRDN', 'American Idiot', 'Green Day')
-    add_playlist('PL81_CtYCym28CNGzLEMVBl-RVgMPTu-2j', 'Official Music Video', 'Green Day')
-    """
-    update_channels()
-    update_playlist()
+
+    #update_channels()
+    #update_playlist()
     
     
     
