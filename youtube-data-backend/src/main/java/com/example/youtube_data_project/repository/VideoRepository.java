@@ -12,11 +12,11 @@ import com.example.youtube_data_project.entity.Video;
 @Repository
 public interface VideoRepository extends JpaRepository<Video, Integer>{
 	
-	@Query(value = "select * from video join playlist on video.playlist_title = playlist.title where channel_title = :channelTitle order by views desc;", nativeQuery = true)
+	@Query(value = "select * from video join playlist on video.playlist_id = playlist.id where channel_title = :channelTitle order by views desc;", nativeQuery = true)
 	public List<Video> findAllByPlaylistChannelTitle(@Param("channelTitle") String channelTitle);
 	//public List<Video> findAllByPlaylistChannelTitleOrderByPlaylistChannelTitleAsc(String channelTitle);
 	public List<Video> findAllByPlaylistTitle(String playlistTitle);
 	
-	@Query(value = "select * from video where playlist_title=:playlist_title order by views desc", nativeQuery = true)
+	@Query(value = "select * from video join playlist on video.playlist_id = playlist.id where playlist.title = :playlist_title order by video.views desc", nativeQuery = true)
 	public List<Video> getVideosByPlaylist(@Param("playlist_title") String playlistTitle);
 }

@@ -1,10 +1,7 @@
-import { Playlist } from "../Playlist";
-import { Video } from "../Video";
-
 export class MergeSort<Type>{
 
     merge(collection: Type[], l: number, m: number, r: number, property: String, order: String){
-        let p = property as keyof Video;
+        let p = property as keyof Type;
         
         var n1 = m - l + 1;
         var n2 = r - m;

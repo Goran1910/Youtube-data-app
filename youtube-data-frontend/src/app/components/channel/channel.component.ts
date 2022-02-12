@@ -17,15 +17,9 @@ export class ChannelComponent implements OnInit {
   channelFromService!: Channel;
   quearyParams = environment.defaultQueryParams;
 
-  constructor(private route: ActivatedRoute, private router: Router, private channelService: ChannelService) { }
+  constructor(private route: ActivatedRoute, private channelService: ChannelService) { }
 
   ngOnInit(): void {
-    /*this.route.queryParams
-    .filter(params => params.name)
-    .subscribe(params => {
-        console.log(params);
-        this.channelService.getChannel(params['name']).subscribe((channel) => {this.channel = channel});
-    })*/
     let param = this.route.snapshot.queryParams['name'];
     if(param != undefined){
       this.channelService.getChannel(param).subscribe((channel) => {this.channelFromService = channel});

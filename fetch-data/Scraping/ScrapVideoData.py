@@ -22,9 +22,9 @@ class ScrapVideoData:
         snippet = items[0]['snippet']
         date_string = snippet['publishedAt']
         date = self._format_date(date_string)
-        self.video.setDate(date)
-        self.video.setTitle(snippet['title'])
-        self.video.setThumbnail(snippet['thumbnails']['standard']['url'])
+        self.video.date = date
+        self.video.title = snippet['title']
+        self.video.thumbnail = snippet['thumbnails']['standard']['url']
         
         
     def scrap_data_statistics(self, videoId):
@@ -37,10 +37,10 @@ class ScrapVideoData:
             return
             
         stat = items[0]['statistics']
-        self.video.setViews(int(stat['viewCount']))
-        self.video.setLikes(int(stat['likeCount']))
-        self.video.setDislikes(int(stat['dislikeCount']))
-        self.video.setComments(int(stat['commentCount']))
+        self.video.views = int(stat['viewCount'])
+        self.video.likes = int(stat['likeCount'])
+        self.video.dislikes = int(stat['dislikeCount'])
+        self.video.comments = int(stat['commentCount'])
         
     def scrap_data_content_details(self, videoId):
         url = self.url + '&id=' + videoId + '&part=contentDetails'
@@ -53,7 +53,7 @@ class ScrapVideoData:
             
         duration_messy = items[0]['contentDetails']['duration']
         duration = self._format_duration(duration_messy)
-        self.video.setDuration(duration)
+        self.video.duration = duration
         
         
     def _format_date(self, date_string):

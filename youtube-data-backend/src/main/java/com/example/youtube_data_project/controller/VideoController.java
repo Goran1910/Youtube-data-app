@@ -30,7 +30,6 @@ public class VideoController {
 	
 	@GetMapping("/by/{playlistName}")
 	public List<Video> getVideosByPlaylist(@PathVariable String playlistName){
-		System.out.println(playlistName);
 		return videoService.getVideosByPlaylist(playlistName);
 	}
 }

@@ -19,8 +19,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity(name="playlist")
 public class Playlist {
 	@Id
-	private String title;
 	private String id;
+	private String title;
 	private String thumbnailUrl;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

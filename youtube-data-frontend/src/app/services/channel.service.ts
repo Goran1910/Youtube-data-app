@@ -14,10 +14,10 @@ export class ChannelService {
   constructor(private http: HttpClient) { }
 
   getChannels(): Observable<Channel[]>{
-    return this.http.get<Channel[]>('http://localhost:8080/channels');
+    return this.http.get<Channel[]>(this.apiUrl + 'channels');
   }
 
   getChannel(name: string): Observable<Channel>{
-    return this.http.get<Channel>(`http://localhost:8080/channels/${name}`);
+    return this.http.get<Channel>(this.apiUrl + `channels/${name}`);
   }
 }

@@ -19,7 +19,7 @@ class ScrapPlaylistData:
             self.scrapVideoData.scrap_data_snippet(id)
             self.scrapVideoData.scrap_data_content_details(id)
             self.scrapVideoData.scrap_data_statistics(id)
-            self.scrapVideoData.video.setPlaylistName(self.playlist.title)
+            self.scrapVideoData.video.playlist_id = self.playlist.id
             self.playlist.videos.append(copy.deepcopy(self.scrapVideoData.video))
         
         

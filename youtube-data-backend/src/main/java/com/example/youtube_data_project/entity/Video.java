@@ -43,7 +43,7 @@ public class Video {
 	
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="playlist_title")
+	@JoinColumn(name="playlist_id")
 	private Playlist playlist;
 	
 	public Video() {
